@@ -12,3 +12,8 @@ tasks:
       - python plugins/reply_chatwoot.py
     env:
       CHATWOOT_BODY: "{{ trigger.body | toJson }}"
+
+triggers:
+  - id: webhook_to_chatwoot
+    type: io.kestra.plugin.core.trigger.Webhook
+    key: chatwoot-incoming
