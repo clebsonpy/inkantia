@@ -3,7 +3,7 @@ namespace: chatwoot
 
 tasks:
   - id: run_python
-    type: io.kestra.plugin.scripts.Python.Commands
+    type: io.kestra.plugin.scripts.python.Commands
     namespaceFiles:
       enabled: true
     beforeCommands:
