@@ -2,11 +2,15 @@ import json
 import os
 import requests
 
-CHATWOOT_BASE_URL = os.environ["CHATWOOT_BASE_URL"]
-CHATWOOT_TOKEN = os.environ["CHATWOOT_API_TOKEN"]
+from dotenv import load_dotenv
+
+load_dotenv()
+
+CHATWOOT_BASE_URL = os.getenv("CHATWOOT_BASE_URL")
+CHATWOOT_TOKEN = os.getenv("CHATWOOT_API_TOKEN")
 
 def main():
-    payload = json.loads(os.environ["CHATWOOT_BODY"])
+    payload = json.loads(os.getenv("CHATWOOT_BODY"))
 
     # filtros básicos
     if payload.get("event") != "message_created":

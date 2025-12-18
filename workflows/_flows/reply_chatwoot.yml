@@ -1,0 +1,14 @@
+id: reply_chatwoot
+namespace: chatwoot
+
+tasks:
+  - id: run_python
+    type: io.kestra.plugin.scripts.Python.Commands
+    namespaceFiles:
+      enabled: true
+    beforeCommands:
+      - pip install -r requirements.txt
+    commands:
+      - python plugins/reply_chatwoot.py
+    env:
+      CHATWOOT_BODY: "{{ trigger.body | toJson }}"
