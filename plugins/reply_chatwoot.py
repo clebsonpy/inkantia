@@ -12,7 +12,6 @@ CHATWOOT_TOKEN = os.getenv("CHATWOOT_API_TOKEN")
 def main():
     payload = json.loads(os.getenv("CHATWOOT_BODY"))
 
-    # filtros básicos
     if payload.get("event") != "message_created":
         return
 
