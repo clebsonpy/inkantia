@@ -2,6 +2,10 @@ id: reply_chatwoot
 namespace: chatwoot
 
 tasks:
+  - id: show_body
+    type: io.kestra.plugin.core.log.Log
+    message: "This is false {{ trigger.body | toJson }}"
+
   - id: run_python
     type: io.kestra.plugin.scripts.python.Commands
     namespaceFiles:
@@ -11,7 +15,7 @@ tasks:
     commands:
       - python plugins/reply_chatwoot.py
     env:
-      CHATWOOT_BODY: "{{ trigger.variables.body | toJson }}"
+      CHATWOOT_BODY: "{{ trigger.body | toJson }}"
       CHATWOOT_BASE_URL: https://crm.inkantia.com.br
       CHATWOOT_API_TOKEN: Xic23HUotES1yRWgbVcKifij
 
