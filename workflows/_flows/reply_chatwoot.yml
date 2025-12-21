@@ -25,8 +25,8 @@ tasks:
           - python plugins/reply_chatwoot.py
         env:
           CHATWOOT_BODY: "{{ trigger.body | toJson }}"
-#          CHATWOOT_BASE_URL: https://crm.inkantia.com.br
-#          CHATWOOT_API_TOKEN: Xic23HUotES1yRWgbVcKifij
+          CHATWOOT_BASE_URL: "{{ kv('CHATWOOT_BASE_URL') }}"
+          CHATWOOT_API_TOKEN: "{{ kv('CHATWOOT_API_TOKEN') }}"
 
 triggers:
   - id: webhook_to_chatwoot
