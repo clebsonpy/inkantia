@@ -6,18 +6,27 @@ tasks:
     type: io.kestra.plugin.core.log.Log
     message: "This is false {{ trigger.body | toJson }}"
 
-  - id: run_python
-    type: io.kestra.plugin.scripts.python.Commands
-    namespaceFiles:
-      enabled: true
-    beforeCommands:
-      - pip install -r requirements.txt
-    commands:
-      - python plugins/reply_chatwoot.py
-    env:
-      CHATWOOT_BODY: "{{ trigger.body | toJson }}"
-      CHATWOOT_BASE_URL: https://crm.inkantia.com.br
-      CHATWOOT_API_TOKEN: Xic23HUotES1yRWgbVcKifij
+  - id: filter_contact_message
+    type: io.kestra.plugin.core.flow.If
+    condition: >-
+      {{
+        trigger.body.event == 'message_created'
+        and trigger.body.message_type == 'incoming'
+        and trigger.body.private == false
+      }}
+    then:
+      - id: run_python
+        type: io.kestra.plugin.scripts.python.Commands
+        namespaceFiles:
+          enabled: true
+        beforeCommands:
+          - pip install -r requirements.txt
+        commands:
+          - python plugins/reply_chatwoot.py
+        env:
+          CHATWOOT_BODY: "{{ trigger.body | toJson }}"
+          CHATWOOT_BASE_URL: https://crm.inkantia.com.br
+          CHATWOOT_API_TOKEN: Xic23HUotES1yRWgbVcKifij
 
 triggers:
   - id: webhook_to_chatwoot
