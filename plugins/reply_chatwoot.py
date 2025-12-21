@@ -22,15 +22,15 @@ def main():
     # if payload.get("event") != "message_created":
     #     return
 
-    if payload.get("message_type") != "incoming":
-        return
+    # if payload.get("message_type") != "incoming":
+    #     return
 
     # if payload.get("private") is True:
     #     return
 
-    sender_type = payload.get("sender", {}).get("type")
-    if sender_type != "contact":
-        return
+    # sender_type = payload.get("sender", {}).get("type")
+    # if sender_type != "contact":
+    #     return
 
     conversation_id = payload["conversation"]["id"]
     content = payload.get("content", "")
