@@ -12,9 +12,6 @@ CHATWOOT_TOKEN = os.getenv("CHATWOOT_API_TOKEN")
 
 logger = logging.getLogger(__name__)
 
-logger.debug(CHATWOOT_TOKEN)
-logger.debug(CHATWOOT_BASE_URL)
-
 def main():
     payload = json.loads(os.getenv("CHATWOOT_BODY"))
 
