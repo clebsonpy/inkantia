@@ -19,14 +19,14 @@ def main():
     payload = json.loads(os.getenv("CHATWOOT_BODY"))
 
     # filtros básicos
-    if payload.get("event") != "message_created":
-        return
+    # if payload.get("event") != "message_created":
+    #     return
 
     if payload.get("message_type") != "incoming":
         return
 
-    if payload.get("private") is True:
-        return
+    # if payload.get("private") is True:
+    #     return
 
     sender_type = payload.get("sender", {}).get("type")
     if sender_type != "contact":
